@@ -13,8 +13,9 @@ String _$totalPointsHash() => r'6a7332dcd4a5a1bbbf36f25119cbd803f6a873ca';
 final totalPointsProvider = AutoDisposeFutureProvider<int>.internal(
   totalPoints,
   name: r'totalPointsProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$totalPointsHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$totalPointsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -24,16 +25,19 @@ String _$todayCheckInsHash() => r'fdcdf8134b1cbb51ebe1903454f063764148d04e';
 
 /// See also [TodayCheckIns].
 @ProviderFor(TodayCheckIns)
-final todayCheckInsProvider = AutoDisposeAsyncNotifierProvider<TodayCheckIns,
-    TodayCheckInStatus>.internal(
-  TodayCheckIns.new,
-  name: r'todayCheckInsProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$todayCheckInsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final todayCheckInsProvider =
+    AutoDisposeAsyncNotifierProvider<
+      TodayCheckIns,
+      TodayCheckInStatus
+    >.internal(
+      TodayCheckIns.new,
+      name: r'todayCheckInsProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$todayCheckInsHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$TodayCheckIns = AutoDisposeAsyncNotifier<TodayCheckInStatus>;
 // ignore_for_file: type=lint

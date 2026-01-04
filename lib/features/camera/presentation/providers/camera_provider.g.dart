@@ -21,7 +21,7 @@ final ghostOverlayPathProvider = AutoDisposeFutureProvider<String?>.internal(
 );
 
 typedef GhostOverlayPathRef = AutoDisposeFutureProviderRef<String?>;
-String _$cameraHash() => r'5366c42b1a93447551d7d29bb681be6850bed476';
+String _$cameraHash() => r'b61d6f9685ccfcd9f39fc3f5ab5df4f0834479f2';
 
 /// See also [Camera].
 @ProviderFor(Camera)

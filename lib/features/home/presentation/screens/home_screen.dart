@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:glowstate/core/theme/app_colors.dart';
 import 'package:glowstate/features/auth/presentation/providers/auth_provider.dart';
 
@@ -149,7 +150,7 @@ class HomeScreen extends ConsumerWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton.icon(
-        onPressed: () {},
+        onPressed: () => context.push('/camera'),
         icon: const Icon(Icons.camera_alt),
         label: const Text('Take Today\'s Photo'),
         style: ElevatedButton.styleFrom(

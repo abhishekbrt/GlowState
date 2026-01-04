@@ -12,7 +12,8 @@ part of 'check_in.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$CheckIn {
@@ -33,14 +34,15 @@ abstract class $CheckInCopyWith<$Res> {
   factory $CheckInCopyWith(CheckIn value, $Res Function(CheckIn) then) =
       _$CheckInCopyWithImpl<$Res, CheckIn>;
   @useResult
-  $Res call(
-      {String id,
-      DateTime date,
-      CheckInType type,
-      DateTime completedAt,
-      bool hasPhoto,
-      String? photoId,
-      int pointsEarned});
+  $Res call({
+    String id,
+    DateTime date,
+    CheckInType type,
+    DateTime completedAt,
+    bool hasPhoto,
+    String? photoId,
+    int pointsEarned,
+  });
 }
 
 /// @nodoc
@@ -64,54 +66,59 @@ class _$CheckInCopyWithImpl<$Res, $Val extends CheckIn>
     Object? photoId = freezed,
     Object? pointsEarned = null,
   }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as CheckInType,
-      completedAt: null == completedAt
-          ? _value.completedAt
-          : completedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      hasPhoto: null == hasPhoto
-          ? _value.hasPhoto
-          : hasPhoto // ignore: cast_nullable_to_non_nullable
-              as bool,
-      photoId: freezed == photoId
-          ? _value.photoId
-          : photoId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pointsEarned: null == pointsEarned
-          ? _value.pointsEarned
-          : pointsEarned // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            date: null == date
+                ? _value.date
+                : date // ignore: cast_nullable_to_non_nullable
+                      as DateTime,
+            type: null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as CheckInType,
+            completedAt: null == completedAt
+                ? _value.completedAt
+                : completedAt // ignore: cast_nullable_to_non_nullable
+                      as DateTime,
+            hasPhoto: null == hasPhoto
+                ? _value.hasPhoto
+                : hasPhoto // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            photoId: freezed == photoId
+                ? _value.photoId
+                : photoId // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            pointsEarned: null == pointsEarned
+                ? _value.pointsEarned
+                : pointsEarned // ignore: cast_nullable_to_non_nullable
+                      as int,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$CheckInImplCopyWith<$Res> implements $CheckInCopyWith<$Res> {
   factory _$$CheckInImplCopyWith(
-          _$CheckInImpl value, $Res Function(_$CheckInImpl) then) =
-      __$$CheckInImplCopyWithImpl<$Res>;
+    _$CheckInImpl value,
+    $Res Function(_$CheckInImpl) then,
+  ) = __$$CheckInImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      DateTime date,
-      CheckInType type,
-      DateTime completedAt,
-      bool hasPhoto,
-      String? photoId,
-      int pointsEarned});
+  $Res call({
+    String id,
+    DateTime date,
+    CheckInType type,
+    DateTime completedAt,
+    bool hasPhoto,
+    String? photoId,
+    int pointsEarned,
+  });
 }
 
 /// @nodoc
@@ -119,8 +126,9 @@ class __$$CheckInImplCopyWithImpl<$Res>
     extends _$CheckInCopyWithImpl<$Res, _$CheckInImpl>
     implements _$$CheckInImplCopyWith<$Res> {
   __$$CheckInImplCopyWithImpl(
-      _$CheckInImpl _value, $Res Function(_$CheckInImpl) _then)
-      : super(_value, _then);
+    _$CheckInImpl _value,
+    $Res Function(_$CheckInImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -133,50 +141,53 @@ class __$$CheckInImplCopyWithImpl<$Res>
     Object? photoId = freezed,
     Object? pointsEarned = null,
   }) {
-    return _then(_$CheckInImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      date: null == date
-          ? _value.date
-          : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as CheckInType,
-      completedAt: null == completedAt
-          ? _value.completedAt
-          : completedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      hasPhoto: null == hasPhoto
-          ? _value.hasPhoto
-          : hasPhoto // ignore: cast_nullable_to_non_nullable
-              as bool,
-      photoId: freezed == photoId
-          ? _value.photoId
-          : photoId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      pointsEarned: null == pointsEarned
-          ? _value.pointsEarned
-          : pointsEarned // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _$CheckInImpl(
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        date: null == date
+            ? _value.date
+            : date // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+        type: null == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as CheckInType,
+        completedAt: null == completedAt
+            ? _value.completedAt
+            : completedAt // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+        hasPhoto: null == hasPhoto
+            ? _value.hasPhoto
+            : hasPhoto // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        photoId: freezed == photoId
+            ? _value.photoId
+            : photoId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        pointsEarned: null == pointsEarned
+            ? _value.pointsEarned
+            : pointsEarned // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$CheckInImpl implements _CheckIn {
-  const _$CheckInImpl(
-      {required this.id,
-      required this.date,
-      required this.type,
-      required this.completedAt,
-      this.hasPhoto = false,
-      this.photoId,
-      this.pointsEarned = 10});
+  const _$CheckInImpl({
+    required this.id,
+    required this.date,
+    required this.type,
+    required this.completedAt,
+    this.hasPhoto = false,
+    this.photoId,
+    this.pointsEarned = 10,
+  });
 
   @override
   final String id;
@@ -218,8 +229,16 @@ class _$CheckInImpl implements _CheckIn {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, date, type, completedAt,
-      hasPhoto, photoId, pointsEarned);
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    date,
+    type,
+    completedAt,
+    hasPhoto,
+    photoId,
+    pointsEarned,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -229,14 +248,15 @@ class _$CheckInImpl implements _CheckIn {
 }
 
 abstract class _CheckIn implements CheckIn {
-  const factory _CheckIn(
-      {required final String id,
-      required final DateTime date,
-      required final CheckInType type,
-      required final DateTime completedAt,
-      final bool hasPhoto,
-      final String? photoId,
-      final int pointsEarned}) = _$CheckInImpl;
+  const factory _CheckIn({
+    required final String id,
+    required final DateTime date,
+    required final CheckInType type,
+    required final DateTime completedAt,
+    final bool hasPhoto,
+    final String? photoId,
+    final int pointsEarned,
+  }) = _$CheckInImpl;
 
   @override
   String get id;
