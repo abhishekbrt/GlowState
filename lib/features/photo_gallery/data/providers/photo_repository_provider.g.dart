@@ -6,7 +6,24 @@ part of 'photo_repository_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$photoLocalSourceHash() => r'e1fb3455553f628eb00f39276211c58a92b3f9c1';
+String _$photoBoxHash() => r'ffab457470086d288d63c9b8f7d7418e4d5245a8';
+
+/// Provider for the Hive box storing photos
+///
+/// Copied from [photoBox].
+@ProviderFor(photoBox)
+final photoBoxProvider = Provider<Box<PhotoModel>>.internal(
+  photoBox,
+  name: r'photoBoxProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$photoBoxHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef PhotoBoxRef = ProviderRef<Box<PhotoModel>>;
+String _$photoLocalSourceHash() => r'd0cad0d8e2ecc226e140daff87d693edf66ae4b3';
 
 /// See also [photoLocalSource].
 @ProviderFor(photoLocalSource)

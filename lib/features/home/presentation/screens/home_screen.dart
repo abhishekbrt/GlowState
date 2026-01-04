@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:glowstate/core/theme/app_colors.dart';
 import 'package:glowstate/features/auth/presentation/providers/auth_provider.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -16,13 +17,17 @@ class HomeScreen extends ConsumerWidget {
         title: const Text('GlowState'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.photo_library),
+            onPressed: () => context.pushNamed('gallery'),
+          ),
+          IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () => ref.read(authProvider.notifier).logout(),
           ),
         ],
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

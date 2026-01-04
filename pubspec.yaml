@@ -23,7 +23,6 @@ dependencies:
   image: ^4.2.0
 
   # Video Generation
-  ffmpeg_kit_flutter: ^6.0.3
   video_player: ^2.9.1
 
   # Local Storage

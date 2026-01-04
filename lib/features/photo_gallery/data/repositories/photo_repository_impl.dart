@@ -1,9 +1,9 @@
 import 'package:glowstate/features/photo_gallery/data/datasources/photo_local_source.dart';
+import 'package:glowstate/features/photo_gallery/data/models/photo_model.dart';
 import 'package:glowstate/shared/domain/entities/photo_record.dart';
+import 'package:glowstate/shared/domain/enums/check_in_type.dart';
 
 import '../../domain/repositories/photo_repository.dart';
-
-// Note: PhotoLocalSource will be used in the full implementation
 
 /// Implementation of [PhotoRepository] using shared [PhotoRecord]
 class PhotoRepositoryImpl implements PhotoRepository {
@@ -13,8 +13,8 @@ class PhotoRepositoryImpl implements PhotoRepository {
 
   @override
   Future<List<PhotoRecord>> getPhotosByDate(DateTime date) async {
-    // TODO: Implement - get from local source
-    throw UnimplementedError('PhotoRepositoryImpl.getPhotosByDate');
+    final models = await localSource.getPhotosByDate(date);
+    return models.map((m) => m.toPhotoRecord()).toList();
   }
 
   @override
@@ -22,63 +22,81 @@ class PhotoRepositoryImpl implements PhotoRepository {
     DateTime start,
     DateTime end,
   ) async {
-    // TODO: Implement - filter by date range
-    throw UnimplementedError('PhotoRepositoryImpl.getPhotosByDateRange');
+    final models = await localSource.getPhotosByDateRange(start, end);
+    return models.map((m) => m.toPhotoRecord()).toList();
   }
 
   @override
   Future<List<PhotoRecord>> getPhotosForMonth(int year, int month) async {
-    // TODO: Implement - get photos for calendar month
-    throw UnimplementedError('PhotoRepositoryImpl.getPhotosForMonth');
+    final models = await localSource.getPhotosForMonth(year, month);
+    return models.map((m) => m.toPhotoRecord()).toList();
   }
 
   @override
   Future<List<PhotoRecord>> getPhotosForTimelapse({
     bool includePrivate = true,
   }) async {
-    // TODO: Implement - filter out private if needed, sort by date
-    throw UnimplementedError('PhotoRepositoryImpl.getPhotosForTimelapse');
+    final models = await localSource.getAllPhotos();
+    final filtered = includePrivate
+        ? models
+        : models.where((m) => !m.isPrivate).toList();
+    // Sort by capturedAt ascending for timelapse (oldest first)
+    final sorted = filtered.toList()
+      ..sort((a, b) => a.capturedAt.compareTo(b.capturedAt));
+    return sorted.map((m) => m.toPhotoRecord()).toList();
   }
 
   @override
   Future<PhotoRecord> savePhoto(PhotoRecord photo) async {
-    // TODO: Implement - save to local storage
-    throw UnimplementedError('PhotoRepositoryImpl.savePhoto');
+    final model = PhotoModel.fromPhotoRecord(photo);
+    final saved = await localSource.savePhoto(model);
+    return saved.toPhotoRecord();
   }
 
   @override
   Future<void> deletePhoto(String id) async {
-    // TODO: Implement - delete from storage
-    throw UnimplementedError('PhotoRepositoryImpl.deletePhoto');
+    await localSource.deletePhoto(id);
   }
 
   @override
   Future<void> updatePhotoPrivacy(String id, {required bool isPrivate}) async {
-    // TODO: Implement - update privacy flag
-    throw UnimplementedError('PhotoRepositoryImpl.updatePhotoPrivacy');
+    final existing = await localSource.getPhotoById(id);
+    if (existing != null) {
+      final updated = existing.copyWith(isPrivate: isPrivate);
+      await localSource.updatePhoto(updated);
+    }
   }
 
   @override
   Future<PhotoRecord?> getLatestPhoto() async {
-    // TODO: Implement - get most recent photo for ghost overlay
-    throw UnimplementedError('PhotoRepositoryImpl.getLatestPhoto');
+    final model = await localSource.getLatestPhoto();
+    return model?.toPhotoRecord();
   }
 
   @override
   Future<PhotoRecord?> getLatestPhotoByType(dynamic checkInType) async {
-    // TODO: Implement - get latest photo of specific type
-    throw UnimplementedError('PhotoRepositoryImpl.getLatestPhotoByType');
+    if (checkInType is! CheckInType) return null;
+
+    final isMorning = checkInType == CheckInType.morning;
+    final all = await localSource.getAllPhotos();
+    final filtered = all.where((m) => m.isMorning == isMorning).toList();
+    if (filtered.isEmpty) return null;
+
+    // Already sorted newest first from getAllPhotos
+    return filtered.first.toPhotoRecord();
   }
 
   @override
   Future<int> getPhotoCount() async {
-    // TODO: Implement - count all photos
-    throw UnimplementedError('PhotoRepositoryImpl.getPhotoCount');
+    return localSource.getPhotoCount();
   }
 
   @override
   Future<List<PhotoRecord>> getPhotosByCycleDay(int cycleDay) async {
-    // TODO: Implement - get photos for specific cycle day
-    throw UnimplementedError('PhotoRepositoryImpl.getPhotosByCycleDay');
+    final all = await localSource.getAllPhotos();
+    return all
+        .where((m) => m.cycleDay == cycleDay)
+        .map((m) => m.toPhotoRecord())
+        .toList();
   }
 }

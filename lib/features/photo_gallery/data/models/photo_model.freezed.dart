@@ -21,13 +21,22 @@ PhotoModel _$PhotoModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PhotoModel {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get filePath => throw _privateConstructorUsedError;
+  @HiveField(2)
   DateTime get capturedAt => throw _privateConstructorUsedError;
+  @HiveField(3)
   bool get isMorning => throw _privateConstructorUsedError;
+  @HiveField(4)
   bool get isPrivate => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get thumbnailPath => throw _privateConstructorUsedError;
+  @HiveField(6)
   int? get cycleDay => throw _privateConstructorUsedError;
+  @HiveField(7)
+  String? get notes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,13 +52,14 @@ abstract class $PhotoModelCopyWith<$Res> {
   ) = _$PhotoModelCopyWithImpl<$Res, PhotoModel>;
   @useResult
   $Res call({
-    String id,
-    String filePath,
-    DateTime capturedAt,
-    bool isMorning,
-    bool isPrivate,
-    String? thumbnailPath,
-    int? cycleDay,
+    @HiveField(0) String id,
+    @HiveField(1) String filePath,
+    @HiveField(2) DateTime capturedAt,
+    @HiveField(3) bool isMorning,
+    @HiveField(4) bool isPrivate,
+    @HiveField(5) String? thumbnailPath,
+    @HiveField(6) int? cycleDay,
+    @HiveField(7) String? notes,
   });
 }
 
@@ -73,6 +83,7 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
     Object? isPrivate = null,
     Object? thumbnailPath = freezed,
     Object? cycleDay = freezed,
+    Object? notes = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -104,6 +115,10 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
                 ? _value.cycleDay
                 : cycleDay // ignore: cast_nullable_to_non_nullable
                       as int?,
+            notes: freezed == notes
+                ? _value.notes
+                : notes // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -120,13 +135,14 @@ abstract class _$$PhotoModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    String id,
-    String filePath,
-    DateTime capturedAt,
-    bool isMorning,
-    bool isPrivate,
-    String? thumbnailPath,
-    int? cycleDay,
+    @HiveField(0) String id,
+    @HiveField(1) String filePath,
+    @HiveField(2) DateTime capturedAt,
+    @HiveField(3) bool isMorning,
+    @HiveField(4) bool isPrivate,
+    @HiveField(5) String? thumbnailPath,
+    @HiveField(6) int? cycleDay,
+    @HiveField(7) String? notes,
   });
 }
 
@@ -149,6 +165,7 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
     Object? isPrivate = null,
     Object? thumbnailPath = freezed,
     Object? cycleDay = freezed,
+    Object? notes = freezed,
   }) {
     return _then(
       _$PhotoModelImpl(
@@ -180,6 +197,10 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
             ? _value.cycleDay
             : cycleDay // ignore: cast_nullable_to_non_nullable
                   as int?,
+        notes: freezed == notes
+            ? _value.notes
+            : notes // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }
@@ -189,37 +210,48 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PhotoModelImpl extends _PhotoModel {
   const _$PhotoModelImpl({
-    required this.id,
-    required this.filePath,
-    required this.capturedAt,
-    required this.isMorning,
-    this.isPrivate = false,
-    this.thumbnailPath,
-    this.cycleDay,
+    @HiveField(0) required this.id,
+    @HiveField(1) required this.filePath,
+    @HiveField(2) required this.capturedAt,
+    @HiveField(3) required this.isMorning,
+    @HiveField(4) this.isPrivate = false,
+    @HiveField(5) this.thumbnailPath,
+    @HiveField(6) this.cycleDay,
+    @HiveField(7) this.notes,
   }) : super._();
 
   factory _$PhotoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PhotoModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final String filePath;
   @override
+  @HiveField(2)
   final DateTime capturedAt;
   @override
+  @HiveField(3)
   final bool isMorning;
   @override
   @JsonKey()
+  @HiveField(4)
   final bool isPrivate;
   @override
+  @HiveField(5)
   final String? thumbnailPath;
   @override
+  @HiveField(6)
   final int? cycleDay;
+  @override
+  @HiveField(7)
+  final String? notes;
 
   @override
   String toString() {
-    return 'PhotoModel(id: $id, filePath: $filePath, capturedAt: $capturedAt, isMorning: $isMorning, isPrivate: $isPrivate, thumbnailPath: $thumbnailPath, cycleDay: $cycleDay)';
+    return 'PhotoModel(id: $id, filePath: $filePath, capturedAt: $capturedAt, isMorning: $isMorning, isPrivate: $isPrivate, thumbnailPath: $thumbnailPath, cycleDay: $cycleDay, notes: $notes)';
   }
 
   @override
@@ -239,7 +271,8 @@ class _$PhotoModelImpl extends _PhotoModel {
             (identical(other.thumbnailPath, thumbnailPath) ||
                 other.thumbnailPath == thumbnailPath) &&
             (identical(other.cycleDay, cycleDay) ||
-                other.cycleDay == cycleDay));
+                other.cycleDay == cycleDay) &&
+            (identical(other.notes, notes) || other.notes == notes));
   }
 
   @JsonKey(ignore: true)
@@ -253,6 +286,7 @@ class _$PhotoModelImpl extends _PhotoModel {
     isPrivate,
     thumbnailPath,
     cycleDay,
+    notes,
   );
 
   @JsonKey(ignore: true)
@@ -269,13 +303,14 @@ class _$PhotoModelImpl extends _PhotoModel {
 
 abstract class _PhotoModel extends PhotoModel {
   const factory _PhotoModel({
-    required final String id,
-    required final String filePath,
-    required final DateTime capturedAt,
-    required final bool isMorning,
-    final bool isPrivate,
-    final String? thumbnailPath,
-    final int? cycleDay,
+    @HiveField(0) required final String id,
+    @HiveField(1) required final String filePath,
+    @HiveField(2) required final DateTime capturedAt,
+    @HiveField(3) required final bool isMorning,
+    @HiveField(4) final bool isPrivate,
+    @HiveField(5) final String? thumbnailPath,
+    @HiveField(6) final int? cycleDay,
+    @HiveField(7) final String? notes,
   }) = _$PhotoModelImpl;
   const _PhotoModel._() : super._();
 
@@ -283,19 +318,29 @@ abstract class _PhotoModel extends PhotoModel {
       _$PhotoModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   String get filePath;
   @override
+  @HiveField(2)
   DateTime get capturedAt;
   @override
+  @HiveField(3)
   bool get isMorning;
   @override
+  @HiveField(4)
   bool get isPrivate;
   @override
+  @HiveField(5)
   String? get thumbnailPath;
   @override
+  @HiveField(6)
   int? get cycleDay;
+  @override
+  @HiveField(7)
+  String? get notes;
   @override
   @JsonKey(ignore: true)
   _$$PhotoModelImplCopyWith<_$PhotoModelImpl> get copyWith =>
