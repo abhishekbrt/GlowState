@@ -121,9 +121,3 @@ class Camera extends _$Camera {
     return CheckInType.night;
   }
 }
-
-@riverpod
-Future<String?> ghostOverlayPath(GhostOverlayPathRef ref) async {
-  final repository = ref.watch(cameraRepositoryProvider);
-  return repository.getLastPhotoPath();
-}

@@ -3,7 +3,6 @@ abstract final class AppConstants {
   static const int flowerRevealDay = 10;
   static const int maxPhotosPerDay = 2;
 
-  static const double ghostOverlayOpacity = 0.3;
   static const int timelapseFrameRate = 60;
   static const int timelapseWidth = 1080;
   static const int timelapseHeight = 1920;
