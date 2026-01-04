@@ -1,19 +1,28 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:glowstate/features/camera/data/datasources/camera_local_source.dart';
 import 'package:glowstate/features/camera/data/repositories/camera_repository_impl.dart';
+import 'package:glowstate/features/photo_gallery/domain/repositories/photo_repository.dart';
+import 'package:glowstate/shared/domain/entities/photo_record.dart';
 import 'package:glowstate/shared/domain/enums/check_in_type.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockCameraLocalSource extends Mock implements CameraLocalSource {}
 
+class MockPhotoRepository extends Mock implements PhotoRepository {}
+
 void main() {
   group('CameraRepositoryImpl', () {
     late CameraRepositoryImpl repository;
     late MockCameraLocalSource mockLocalSource;
+    late MockPhotoRepository mockPhotoRepository;
 
     setUp(() {
       mockLocalSource = MockCameraLocalSource();
-      repository = CameraRepositoryImpl(localSource: mockLocalSource);
+      mockPhotoRepository = MockPhotoRepository();
+      repository = CameraRepositoryImpl(
+        localSource: mockLocalSource,
+        photoRepository: mockPhotoRepository,
+      );
     });
 
     group('initialize', () {
@@ -108,10 +117,33 @@ void main() {
     });
 
     group('getLastPhotoPath', () {
-      test('should return null for now (gallery not implemented)', () async {
+      test('should return latest photo path from photoRepository', () async {
+        final mockPhoto = PhotoRecord(
+          id: '1',
+          filePath: '/path/to/photo.jpg',
+          capturedAt: DateTime.now(),
+          checkInType: CheckInType.morning,
+        );
+
+        when(
+          () => mockPhotoRepository.getLatestPhoto(),
+        ).thenAnswer((_) async => mockPhoto);
+
+        final result = await repository.getLastPhotoPath();
+
+        expect(result, equals('/path/to/photo.jpg'));
+        verify(() => mockPhotoRepository.getLatestPhoto()).called(1);
+      });
+
+      test('should return null if no latest photo exists', () async {
+        when(
+          () => mockPhotoRepository.getLatestPhoto(),
+        ).thenAnswer((_) async => null);
+
         final result = await repository.getLastPhotoPath();
 
         expect(result, isNull);
+        verify(() => mockPhotoRepository.getLatestPhoto()).called(1);
       });
     });
   });

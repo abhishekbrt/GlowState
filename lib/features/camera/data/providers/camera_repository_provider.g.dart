@@ -21,7 +21,7 @@ final cameraLocalSourceProvider = Provider<CameraLocalSource>.internal(
 );
 
 typedef CameraLocalSourceRef = ProviderRef<CameraLocalSource>;
-String _$cameraRepositoryHash() => r'476bd8fe3453c193ab83b18810b0c725b4ec1261';
+String _$cameraRepositoryHash() => r'6aaa520081bdd41afb30ff70156360de23cf93b6';
 
 /// See also [cameraRepository].
 @ProviderFor(cameraRepository)

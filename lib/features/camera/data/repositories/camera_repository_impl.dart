@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:glowstate/features/photo_gallery/domain/repositories/photo_repository.dart';
 import 'package:glowstate/shared/domain/enums/check_in_type.dart';
 
 import '../../domain/repositories/camera_repository.dart';
@@ -10,8 +11,12 @@ import '../datasources/camera_local_source.dart';
 /// to PhotoRepository via use cases.
 class CameraRepositoryImpl implements CameraRepository {
   final CameraLocalSource localSource;
+  final PhotoRepository photoRepository;
 
-  CameraRepositoryImpl({required this.localSource});
+  CameraRepositoryImpl({
+    required this.localSource,
+    required this.photoRepository,
+  });
 
   @override
   Future<void> initialize() async {
@@ -32,9 +37,8 @@ class CameraRepositoryImpl implements CameraRepository {
 
   @override
   Future<String?> getLastPhotoPath() async {
-    // TODO: Integrate with PhotoRepository when Gallery is implemented
-    // For now, return null (no ghost overlay)
-    return null;
+    final lastPhoto = await photoRepository.getLatestPhoto();
+    return lastPhoto?.filePath;
   }
 
   @override

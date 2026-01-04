@@ -22,8 +22,8 @@ dependencies:
   camera: ^0.11.0
   image: ^4.2.0
 
-  # Video Generation
-  ffmpeg_kit_flutter: ^6.0.3
+  # Video Generation (temporarily disabled - needs ffmpeg_kit fix)
+  # ffmpeg_kit_flutter: ^6.0.3
   video_player: ^2.9.1
 
   # Local Storage
@@ -33,6 +33,7 @@ dependencies:
 
   # Notifications
   flutter_local_notifications: ^17.2.2
+  timezone: ^0.9.4
 
   # Permissions
   permission_handler: ^11.3.1

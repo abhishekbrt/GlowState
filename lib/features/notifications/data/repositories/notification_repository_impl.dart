@@ -22,40 +22,75 @@ class NotificationRepositoryImpl implements NotificationRepository {
 
   @override
   Future<NotificationSettings> getSettings() async {
-    // TODO: Implement - get from local source or return defaults
-    throw UnimplementedError();
+    final settings = await localSource.getSettings();
+    return settings ?? NotificationSettings.defaults();
   }
 
   @override
   Future<void> saveSettings(NotificationSettings settings) async {
-    // TODO: Implement - save to local source and reschedule notifications
-    throw UnimplementedError();
+    await localSource.saveSettings(settings);
+    await scheduleNotifications(settings);
   }
 
   @override
   Future<void> scheduleNotifications(NotificationSettings settings) async {
-    // TODO: Implement - schedule based on settings
-    // Morning reminder at morningReminderTime
-    // Evening reminder at eveningReminderTime
-    // Streak reminder in evening if haven't checked in
-    throw UnimplementedError();
+    // Cancel existing first to avoid duplicates
+    await cancelAllNotifications();
+
+    if (settings.morningReminderEnabled) {
+      await notificationService.scheduleNotification(
+        id: NotificationIds.morningReminder,
+        title: 'Good Morning!',
+        body: "Time for your morning skincare routine. Let's glow!",
+        scheduledTime: settings.morningReminderTime,
+        repeatsDaily: true,
+      );
+    }
+
+    if (settings.eveningReminderEnabled) {
+      await notificationService.scheduleNotification(
+        id: NotificationIds.eveningReminder,
+        title: 'Evening Routine',
+        body: 'Don\'t forget your night check-in. Your skin will thank you!',
+        scheduledTime: settings.eveningReminderTime,
+        repeatsDaily: true,
+      );
+    }
+
+    // Streak reminder could be complex, for now we just schedule it
+    // but in a real app we might want to only show it if they haven't checked in by a certain time
+    if (settings.streakReminderEnabled) {
+      // Logic for streak reminder (e.g., 2 hours before evening routine if not done)
+      // For shell, we just schedule it at a fixed late hour
+      final lateHour = DateTime(
+        settings.eveningReminderTime.year,
+        settings.eveningReminderTime.month,
+        settings.eveningReminderTime.day,
+        22,
+        30,
+      );
+      await notificationService.scheduleNotification(
+        id: NotificationIds.streakReminder,
+        title: 'Streak at Risk!',
+        body: 'Quick! Complete your check-in now to save your streak.',
+        scheduledTime: lateHour,
+        repeatsDaily: true,
+      );
+    }
   }
 
   @override
   Future<void> cancelAllNotifications() async {
-    // TODO: Implement
-    throw UnimplementedError();
+    await notificationService.cancelAllNotifications();
   }
 
   @override
   Future<bool> requestPermission() async {
-    // TODO: Implement
-    throw UnimplementedError();
+    return await notificationService.requestPermission();
   }
 
   @override
   Future<bool> hasPermission() async {
-    // TODO: Implement
-    throw UnimplementedError();
+    return await notificationService.hasPermission();
   }
 }
