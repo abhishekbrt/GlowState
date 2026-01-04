@@ -36,12 +36,6 @@ class CameraRepositoryImpl implements CameraRepository {
   }
 
   @override
-  Future<String?> getLastPhotoPath() async {
-    final lastPhoto = await photoRepository.getLatestPhoto();
-    return lastPhoto?.filePath;
-  }
-
-  @override
   Future<void> switchCamera() async {
     await localSource.switchCamera();
   }

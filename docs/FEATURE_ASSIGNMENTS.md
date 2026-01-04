@@ -27,7 +27,6 @@ Each feature is isolated. You implement the **inside** of your feature while the
 - Initialize camera hardware
 - Capture photos (return file path)
 - Switch cameras, control flash/zoom
-- Implement ghost overlay alignment
 
 **You receive:**
 - `CheckInType` (morning/night) from shared domain
@@ -61,7 +60,6 @@ Each feature is isolated. You implement the **inside** of your feature while the
 
 **You provide:**
 - Stored photos for Timelapse feature
-- Latest photo for Camera ghost overlay
 
 **DO NOT:**
 - Capture photos (Camera feature does this)

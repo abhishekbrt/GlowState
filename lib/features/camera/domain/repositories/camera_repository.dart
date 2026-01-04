@@ -22,9 +22,6 @@ abstract class CameraRepository {
   /// Returns the file path of the captured image
   Future<String> capturePhoto({required CheckInType checkInType});
 
-  /// Get the path of the last captured photo (for ghost overlay)
-  Future<String?> getLastPhotoPath();
-
   /// Switch between front and back camera
   Future<void> switchCamera();
 
