@@ -11,38 +11,62 @@ class StreakRepositoryImpl implements StreakRepository {
   final StreakLocalSource localSource;
 
   @override
-  Future<Streak> getStreak() {
-    // TODO: Implement - get from local source or return empty
-    throw UnimplementedError();
+  Future<Streak> getStreak() async {
+    final streak = await localSource.getStreak();
+    return streak ?? Streak.empty();
   }
 
   @override
-  Future<Streak> recordCheckIn() {
-    // TODO: Implement streak logic:
-    // 1. Get current streak
-    // 2. If already checked in today, return current
-    // 3. If checked in yesterday, increment streak
-    // 4. If missed a day, reset to 1
-    // 5. Update longest streak if needed
-    // 6. Save and return
-    throw UnimplementedError();
+  Future<Streak> recordCheckIn() async {
+    final current = await getStreak();
+
+    if (current.hasCheckedInToday) {
+      return current;
+    }
+
+    int newStreak;
+    if (current.isActive) {
+      // Checked in yesterday, increment streak
+      newStreak = current.currentStreak + 1;
+    } else {
+      // Missed a day (or first time), reset to 1
+      newStreak = 1;
+    }
+
+    final updated = current.copyWith(
+      currentStreak: newStreak,
+      longestStreak: newStreak > current.longestStreak
+          ? newStreak
+          : current.longestStreak,
+      lastCheckInDate: DateTime.now(),
+      totalCheckIns: current.totalCheckIns + 1,
+    );
+
+    await localSource.saveStreak(updated);
+    return updated;
   }
 
   @override
-  Future<Streak> validateStreak() {
-    // TODO: Implement - check if streak should be reset due to missed day
-    throw UnimplementedError();
+  Future<Streak> validateStreak() async {
+    final current = await getStreak();
+
+    // If streak is not active, reset currentStreak to 0 (but keep longest and total)
+    if (current.lastCheckInDate != null && !current.isActive) {
+      final reset = current.copyWith(currentStreak: 0);
+      await localSource.saveStreak(reset);
+      return reset;
+    }
+
+    return current;
   }
 
   @override
-  Future<void> resetStreak() {
-    // TODO: Implement - clear streak data
-    throw UnimplementedError();
+  Future<void> resetStreak() async {
+    await localSource.clearStreak();
   }
 
   @override
   Stream<Streak> watchStreak() {
-    // TODO: Implement - return stream from local source
-    throw UnimplementedError();
+    return localSource.watchStreak().map((s) => s ?? Streak.empty());
   }
 }

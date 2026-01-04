@@ -12,8 +12,7 @@ part of 'photo_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PhotoModel _$PhotoModelFromJson(Map<String, dynamic> json) {
   return _PhotoModel.fromJson(json);
@@ -47,20 +46,18 @@ mixin _$PhotoModel {
 /// @nodoc
 abstract class $PhotoModelCopyWith<$Res> {
   factory $PhotoModelCopyWith(
-    PhotoModel value,
-    $Res Function(PhotoModel) then,
-  ) = _$PhotoModelCopyWithImpl<$Res, PhotoModel>;
+          PhotoModel value, $Res Function(PhotoModel) then) =
+      _$PhotoModelCopyWithImpl<$Res, PhotoModel>;
   @useResult
-  $Res call({
-    @HiveField(0) String id,
-    @HiveField(1) String filePath,
-    @HiveField(2) DateTime capturedAt,
-    @HiveField(3) bool isMorning,
-    @HiveField(4) bool isPrivate,
-    @HiveField(5) String? thumbnailPath,
-    @HiveField(6) int? cycleDay,
-    @HiveField(7) String? notes,
-  });
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) String filePath,
+      @HiveField(2) DateTime capturedAt,
+      @HiveField(3) bool isMorning,
+      @HiveField(4) bool isPrivate,
+      @HiveField(5) String? thumbnailPath,
+      @HiveField(6) int? cycleDay,
+      @HiveField(7) String? notes});
 }
 
 /// @nodoc
@@ -85,43 +82,40 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
     Object? cycleDay = freezed,
     Object? notes = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            filePath: null == filePath
-                ? _value.filePath
-                : filePath // ignore: cast_nullable_to_non_nullable
-                      as String,
-            capturedAt: null == capturedAt
-                ? _value.capturedAt
-                : capturedAt // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            isMorning: null == isMorning
-                ? _value.isMorning
-                : isMorning // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            isPrivate: null == isPrivate
-                ? _value.isPrivate
-                : isPrivate // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            thumbnailPath: freezed == thumbnailPath
-                ? _value.thumbnailPath
-                : thumbnailPath // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            cycleDay: freezed == cycleDay
-                ? _value.cycleDay
-                : cycleDay // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            notes: freezed == notes
-                ? _value.notes
-                : notes // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      capturedAt: null == capturedAt
+          ? _value.capturedAt
+          : capturedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isMorning: null == isMorning
+          ? _value.isMorning
+          : isMorning // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPrivate: null == isPrivate
+          ? _value.isPrivate
+          : isPrivate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      thumbnailPath: freezed == thumbnailPath
+          ? _value.thumbnailPath
+          : thumbnailPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cycleDay: freezed == cycleDay
+          ? _value.cycleDay
+          : cycleDay // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -129,21 +123,19 @@ class _$PhotoModelCopyWithImpl<$Res, $Val extends PhotoModel>
 abstract class _$$PhotoModelImplCopyWith<$Res>
     implements $PhotoModelCopyWith<$Res> {
   factory _$$PhotoModelImplCopyWith(
-    _$PhotoModelImpl value,
-    $Res Function(_$PhotoModelImpl) then,
-  ) = __$$PhotoModelImplCopyWithImpl<$Res>;
+          _$PhotoModelImpl value, $Res Function(_$PhotoModelImpl) then) =
+      __$$PhotoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @HiveField(0) String id,
-    @HiveField(1) String filePath,
-    @HiveField(2) DateTime capturedAt,
-    @HiveField(3) bool isMorning,
-    @HiveField(4) bool isPrivate,
-    @HiveField(5) String? thumbnailPath,
-    @HiveField(6) int? cycleDay,
-    @HiveField(7) String? notes,
-  });
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) String filePath,
+      @HiveField(2) DateTime capturedAt,
+      @HiveField(3) bool isMorning,
+      @HiveField(4) bool isPrivate,
+      @HiveField(5) String? thumbnailPath,
+      @HiveField(6) int? cycleDay,
+      @HiveField(7) String? notes});
 }
 
 /// @nodoc
@@ -151,9 +143,8 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
     extends _$PhotoModelCopyWithImpl<$Res, _$PhotoModelImpl>
     implements _$$PhotoModelImplCopyWith<$Res> {
   __$$PhotoModelImplCopyWithImpl(
-    _$PhotoModelImpl _value,
-    $Res Function(_$PhotoModelImpl) _then,
-  ) : super(_value, _then);
+      _$PhotoModelImpl _value, $Res Function(_$PhotoModelImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -167,58 +158,56 @@ class __$$PhotoModelImplCopyWithImpl<$Res>
     Object? cycleDay = freezed,
     Object? notes = freezed,
   }) {
-    return _then(
-      _$PhotoModelImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        filePath: null == filePath
-            ? _value.filePath
-            : filePath // ignore: cast_nullable_to_non_nullable
-                  as String,
-        capturedAt: null == capturedAt
-            ? _value.capturedAt
-            : capturedAt // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        isMorning: null == isMorning
-            ? _value.isMorning
-            : isMorning // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        isPrivate: null == isPrivate
-            ? _value.isPrivate
-            : isPrivate // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        thumbnailPath: freezed == thumbnailPath
-            ? _value.thumbnailPath
-            : thumbnailPath // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        cycleDay: freezed == cycleDay
-            ? _value.cycleDay
-            : cycleDay // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        notes: freezed == notes
-            ? _value.notes
-            : notes // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$PhotoModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      capturedAt: null == capturedAt
+          ? _value.capturedAt
+          : capturedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      isMorning: null == isMorning
+          ? _value.isMorning
+          : isMorning // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isPrivate: null == isPrivate
+          ? _value.isPrivate
+          : isPrivate // ignore: cast_nullable_to_non_nullable
+              as bool,
+      thumbnailPath: freezed == thumbnailPath
+          ? _value.thumbnailPath
+          : thumbnailPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cycleDay: freezed == cycleDay
+          ? _value.cycleDay
+          : cycleDay // ignore: cast_nullable_to_non_nullable
+              as int?,
+      notes: freezed == notes
+          ? _value.notes
+          : notes // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$PhotoModelImpl extends _PhotoModel {
-  const _$PhotoModelImpl({
-    @HiveField(0) required this.id,
-    @HiveField(1) required this.filePath,
-    @HiveField(2) required this.capturedAt,
-    @HiveField(3) required this.isMorning,
-    @HiveField(4) this.isPrivate = false,
-    @HiveField(5) this.thumbnailPath,
-    @HiveField(6) this.cycleDay,
-    @HiveField(7) this.notes,
-  }) : super._();
+  const _$PhotoModelImpl(
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.filePath,
+      @HiveField(2) required this.capturedAt,
+      @HiveField(3) required this.isMorning,
+      @HiveField(4) this.isPrivate = false,
+      @HiveField(5) this.thumbnailPath,
+      @HiveField(6) this.cycleDay,
+      @HiveField(7) this.notes})
+      : super._();
 
   factory _$PhotoModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PhotoModelImplFromJson(json);
@@ -277,17 +266,8 @@ class _$PhotoModelImpl extends _PhotoModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    filePath,
-    capturedAt,
-    isMorning,
-    isPrivate,
-    thumbnailPath,
-    cycleDay,
-    notes,
-  );
+  int get hashCode => Object.hash(runtimeType, id, filePath, capturedAt,
+      isMorning, isPrivate, thumbnailPath, cycleDay, notes);
 
   @JsonKey(ignore: true)
   @override
@@ -297,21 +277,22 @@ class _$PhotoModelImpl extends _PhotoModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PhotoModelImplToJson(this);
+    return _$$PhotoModelImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _PhotoModel extends PhotoModel {
-  const factory _PhotoModel({
-    @HiveField(0) required final String id,
-    @HiveField(1) required final String filePath,
-    @HiveField(2) required final DateTime capturedAt,
-    @HiveField(3) required final bool isMorning,
-    @HiveField(4) final bool isPrivate,
-    @HiveField(5) final String? thumbnailPath,
-    @HiveField(6) final int? cycleDay,
-    @HiveField(7) final String? notes,
-  }) = _$PhotoModelImpl;
+  const factory _PhotoModel(
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String filePath,
+      @HiveField(2) required final DateTime capturedAt,
+      @HiveField(3) required final bool isMorning,
+      @HiveField(4) final bool isPrivate,
+      @HiveField(5) final String? thumbnailPath,
+      @HiveField(6) final int? cycleDay,
+      @HiveField(7) final String? notes}) = _$PhotoModelImpl;
   const _PhotoModel._() : super._();
 
   factory _PhotoModel.fromJson(Map<String, dynamic> json) =

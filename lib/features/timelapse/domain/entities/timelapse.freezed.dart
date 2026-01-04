@@ -12,8 +12,7 @@ part of 'timelapse.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Timelapse {
@@ -36,16 +35,15 @@ abstract class $TimelapseCopyWith<$Res> {
   factory $TimelapseCopyWith(Timelapse value, $Res Function(Timelapse) then) =
       _$TimelapseCopyWithImpl<$Res, Timelapse>;
   @useResult
-  $Res call({
-    String id,
-    String videoPath,
-    DateTime createdAt,
-    DateTime startDate,
-    DateTime endDate,
-    int photoCount,
-    int durationSeconds,
-    String? thumbnailPath,
-  });
+  $Res call(
+      {String id,
+      String videoPath,
+      DateTime createdAt,
+      DateTime startDate,
+      DateTime endDate,
+      int photoCount,
+      int durationSeconds,
+      String? thumbnailPath});
 }
 
 /// @nodoc
@@ -70,43 +68,40 @@ class _$TimelapseCopyWithImpl<$Res, $Val extends Timelapse>
     Object? durationSeconds = null,
     Object? thumbnailPath = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            videoPath: null == videoPath
-                ? _value.videoPath
-                : videoPath // ignore: cast_nullable_to_non_nullable
-                      as String,
-            createdAt: null == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            startDate: null == startDate
-                ? _value.startDate
-                : startDate // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            endDate: null == endDate
-                ? _value.endDate
-                : endDate // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            photoCount: null == photoCount
-                ? _value.photoCount
-                : photoCount // ignore: cast_nullable_to_non_nullable
-                      as int,
-            durationSeconds: null == durationSeconds
-                ? _value.durationSeconds
-                : durationSeconds // ignore: cast_nullable_to_non_nullable
-                      as int,
-            thumbnailPath: freezed == thumbnailPath
-                ? _value.thumbnailPath
-                : thumbnailPath // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      videoPath: null == videoPath
+          ? _value.videoPath
+          : videoPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      photoCount: null == photoCount
+          ? _value.photoCount
+          : photoCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      durationSeconds: null == durationSeconds
+          ? _value.durationSeconds
+          : durationSeconds // ignore: cast_nullable_to_non_nullable
+              as int,
+      thumbnailPath: freezed == thumbnailPath
+          ? _value.thumbnailPath
+          : thumbnailPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -114,21 +109,19 @@ class _$TimelapseCopyWithImpl<$Res, $Val extends Timelapse>
 abstract class _$$TimelapseImplCopyWith<$Res>
     implements $TimelapseCopyWith<$Res> {
   factory _$$TimelapseImplCopyWith(
-    _$TimelapseImpl value,
-    $Res Function(_$TimelapseImpl) then,
-  ) = __$$TimelapseImplCopyWithImpl<$Res>;
+          _$TimelapseImpl value, $Res Function(_$TimelapseImpl) then) =
+      __$$TimelapseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String videoPath,
-    DateTime createdAt,
-    DateTime startDate,
-    DateTime endDate,
-    int photoCount,
-    int durationSeconds,
-    String? thumbnailPath,
-  });
+  $Res call(
+      {String id,
+      String videoPath,
+      DateTime createdAt,
+      DateTime startDate,
+      DateTime endDate,
+      int photoCount,
+      int durationSeconds,
+      String? thumbnailPath});
 }
 
 /// @nodoc
@@ -136,9 +129,8 @@ class __$$TimelapseImplCopyWithImpl<$Res>
     extends _$TimelapseCopyWithImpl<$Res, _$TimelapseImpl>
     implements _$$TimelapseImplCopyWith<$Res> {
   __$$TimelapseImplCopyWithImpl(
-    _$TimelapseImpl _value,
-    $Res Function(_$TimelapseImpl) _then,
-  ) : super(_value, _then);
+      _$TimelapseImpl _value, $Res Function(_$TimelapseImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -152,58 +144,55 @@ class __$$TimelapseImplCopyWithImpl<$Res>
     Object? durationSeconds = null,
     Object? thumbnailPath = freezed,
   }) {
-    return _then(
-      _$TimelapseImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        videoPath: null == videoPath
-            ? _value.videoPath
-            : videoPath // ignore: cast_nullable_to_non_nullable
-                  as String,
-        createdAt: null == createdAt
-            ? _value.createdAt
-            : createdAt // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        startDate: null == startDate
-            ? _value.startDate
-            : startDate // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        endDate: null == endDate
-            ? _value.endDate
-            : endDate // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        photoCount: null == photoCount
-            ? _value.photoCount
-            : photoCount // ignore: cast_nullable_to_non_nullable
-                  as int,
-        durationSeconds: null == durationSeconds
-            ? _value.durationSeconds
-            : durationSeconds // ignore: cast_nullable_to_non_nullable
-                  as int,
-        thumbnailPath: freezed == thumbnailPath
-            ? _value.thumbnailPath
-            : thumbnailPath // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$TimelapseImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      videoPath: null == videoPath
+          ? _value.videoPath
+          : videoPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      endDate: null == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      photoCount: null == photoCount
+          ? _value.photoCount
+          : photoCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      durationSeconds: null == durationSeconds
+          ? _value.durationSeconds
+          : durationSeconds // ignore: cast_nullable_to_non_nullable
+              as int,
+      thumbnailPath: freezed == thumbnailPath
+          ? _value.thumbnailPath
+          : thumbnailPath // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$TimelapseImpl implements _Timelapse {
-  const _$TimelapseImpl({
-    required this.id,
-    required this.videoPath,
-    required this.createdAt,
-    required this.startDate,
-    required this.endDate,
-    required this.photoCount,
-    required this.durationSeconds,
-    this.thumbnailPath,
-  });
+  const _$TimelapseImpl(
+      {required this.id,
+      required this.videoPath,
+      required this.createdAt,
+      required this.startDate,
+      required this.endDate,
+      required this.photoCount,
+      required this.durationSeconds,
+      this.thumbnailPath});
 
   @override
   final String id;
@@ -249,17 +238,8 @@ class _$TimelapseImpl implements _Timelapse {
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    videoPath,
-    createdAt,
-    startDate,
-    endDate,
-    photoCount,
-    durationSeconds,
-    thumbnailPath,
-  );
+  int get hashCode => Object.hash(runtimeType, id, videoPath, createdAt,
+      startDate, endDate, photoCount, durationSeconds, thumbnailPath);
 
   @JsonKey(ignore: true)
   @override
@@ -269,16 +249,15 @@ class _$TimelapseImpl implements _Timelapse {
 }
 
 abstract class _Timelapse implements Timelapse {
-  const factory _Timelapse({
-    required final String id,
-    required final String videoPath,
-    required final DateTime createdAt,
-    required final DateTime startDate,
-    required final DateTime endDate,
-    required final int photoCount,
-    required final int durationSeconds,
-    final String? thumbnailPath,
-  }) = _$TimelapseImpl;
+  const factory _Timelapse(
+      {required final String id,
+      required final String videoPath,
+      required final DateTime createdAt,
+      required final DateTime startDate,
+      required final DateTime endDate,
+      required final int photoCount,
+      required final int durationSeconds,
+      final String? thumbnailPath}) = _$TimelapseImpl;
 
   @override
   String get id;

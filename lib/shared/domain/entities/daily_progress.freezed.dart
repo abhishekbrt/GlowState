@@ -12,8 +12,7 @@ part of 'daily_progress.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DailyProgress {
@@ -47,19 +46,17 @@ mixin _$DailyProgress {
 /// @nodoc
 abstract class $DailyProgressCopyWith<$Res> {
   factory $DailyProgressCopyWith(
-    DailyProgress value,
-    $Res Function(DailyProgress) then,
-  ) = _$DailyProgressCopyWithImpl<$Res, DailyProgress>;
+          DailyProgress value, $Res Function(DailyProgress) then) =
+      _$DailyProgressCopyWithImpl<$Res, DailyProgress>;
   @useResult
-  $Res call({
-    DateTime date,
-    CheckIn? morningCheckIn,
-    CheckIn? nightCheckIn,
-    int currentStreak,
-    int cycleDay,
-    List<PhotoRecord> photos,
-    int pointsEarned,
-  });
+  $Res call(
+      {DateTime date,
+      CheckIn? morningCheckIn,
+      CheckIn? nightCheckIn,
+      int currentStreak,
+      int cycleDay,
+      List<PhotoRecord> photos,
+      int pointsEarned});
 
   $CheckInCopyWith<$Res>? get morningCheckIn;
   $CheckInCopyWith<$Res>? get nightCheckIn;
@@ -86,39 +83,36 @@ class _$DailyProgressCopyWithImpl<$Res, $Val extends DailyProgress>
     Object? photos = null,
     Object? pointsEarned = null,
   }) {
-    return _then(
-      _value.copyWith(
-            date: null == date
-                ? _value.date
-                : date // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            morningCheckIn: freezed == morningCheckIn
-                ? _value.morningCheckIn
-                : morningCheckIn // ignore: cast_nullable_to_non_nullable
-                      as CheckIn?,
-            nightCheckIn: freezed == nightCheckIn
-                ? _value.nightCheckIn
-                : nightCheckIn // ignore: cast_nullable_to_non_nullable
-                      as CheckIn?,
-            currentStreak: null == currentStreak
-                ? _value.currentStreak
-                : currentStreak // ignore: cast_nullable_to_non_nullable
-                      as int,
-            cycleDay: null == cycleDay
-                ? _value.cycleDay
-                : cycleDay // ignore: cast_nullable_to_non_nullable
-                      as int,
-            photos: null == photos
-                ? _value.photos
-                : photos // ignore: cast_nullable_to_non_nullable
-                      as List<PhotoRecord>,
-            pointsEarned: null == pointsEarned
-                ? _value.pointsEarned
-                : pointsEarned // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      morningCheckIn: freezed == morningCheckIn
+          ? _value.morningCheckIn
+          : morningCheckIn // ignore: cast_nullable_to_non_nullable
+              as CheckIn?,
+      nightCheckIn: freezed == nightCheckIn
+          ? _value.nightCheckIn
+          : nightCheckIn // ignore: cast_nullable_to_non_nullable
+              as CheckIn?,
+      currentStreak: null == currentStreak
+          ? _value.currentStreak
+          : currentStreak // ignore: cast_nullable_to_non_nullable
+              as int,
+      cycleDay: null == cycleDay
+          ? _value.cycleDay
+          : cycleDay // ignore: cast_nullable_to_non_nullable
+              as int,
+      photos: null == photos
+          ? _value.photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<PhotoRecord>,
+      pointsEarned: null == pointsEarned
+          ? _value.pointsEarned
+          : pointsEarned // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
   }
 
   @override
@@ -150,20 +144,18 @@ class _$DailyProgressCopyWithImpl<$Res, $Val extends DailyProgress>
 abstract class _$$DailyProgressImplCopyWith<$Res>
     implements $DailyProgressCopyWith<$Res> {
   factory _$$DailyProgressImplCopyWith(
-    _$DailyProgressImpl value,
-    $Res Function(_$DailyProgressImpl) then,
-  ) = __$$DailyProgressImplCopyWithImpl<$Res>;
+          _$DailyProgressImpl value, $Res Function(_$DailyProgressImpl) then) =
+      __$$DailyProgressImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    DateTime date,
-    CheckIn? morningCheckIn,
-    CheckIn? nightCheckIn,
-    int currentStreak,
-    int cycleDay,
-    List<PhotoRecord> photos,
-    int pointsEarned,
-  });
+  $Res call(
+      {DateTime date,
+      CheckIn? morningCheckIn,
+      CheckIn? nightCheckIn,
+      int currentStreak,
+      int cycleDay,
+      List<PhotoRecord> photos,
+      int pointsEarned});
 
   @override
   $CheckInCopyWith<$Res>? get morningCheckIn;
@@ -176,9 +168,8 @@ class __$$DailyProgressImplCopyWithImpl<$Res>
     extends _$DailyProgressCopyWithImpl<$Res, _$DailyProgressImpl>
     implements _$$DailyProgressImplCopyWith<$Res> {
   __$$DailyProgressImplCopyWithImpl(
-    _$DailyProgressImpl _value,
-    $Res Function(_$DailyProgressImpl) _then,
-  ) : super(_value, _then);
+      _$DailyProgressImpl _value, $Res Function(_$DailyProgressImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -191,54 +182,52 @@ class __$$DailyProgressImplCopyWithImpl<$Res>
     Object? photos = null,
     Object? pointsEarned = null,
   }) {
-    return _then(
-      _$DailyProgressImpl(
-        date: null == date
-            ? _value.date
-            : date // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        morningCheckIn: freezed == morningCheckIn
-            ? _value.morningCheckIn
-            : morningCheckIn // ignore: cast_nullable_to_non_nullable
-                  as CheckIn?,
-        nightCheckIn: freezed == nightCheckIn
-            ? _value.nightCheckIn
-            : nightCheckIn // ignore: cast_nullable_to_non_nullable
-                  as CheckIn?,
-        currentStreak: null == currentStreak
-            ? _value.currentStreak
-            : currentStreak // ignore: cast_nullable_to_non_nullable
-                  as int,
-        cycleDay: null == cycleDay
-            ? _value.cycleDay
-            : cycleDay // ignore: cast_nullable_to_non_nullable
-                  as int,
-        photos: null == photos
-            ? _value._photos
-            : photos // ignore: cast_nullable_to_non_nullable
-                  as List<PhotoRecord>,
-        pointsEarned: null == pointsEarned
-            ? _value.pointsEarned
-            : pointsEarned // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+    return _then(_$DailyProgressImpl(
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      morningCheckIn: freezed == morningCheckIn
+          ? _value.morningCheckIn
+          : morningCheckIn // ignore: cast_nullable_to_non_nullable
+              as CheckIn?,
+      nightCheckIn: freezed == nightCheckIn
+          ? _value.nightCheckIn
+          : nightCheckIn // ignore: cast_nullable_to_non_nullable
+              as CheckIn?,
+      currentStreak: null == currentStreak
+          ? _value.currentStreak
+          : currentStreak // ignore: cast_nullable_to_non_nullable
+              as int,
+      cycleDay: null == cycleDay
+          ? _value.cycleDay
+          : cycleDay // ignore: cast_nullable_to_non_nullable
+              as int,
+      photos: null == photos
+          ? _value._photos
+          : photos // ignore: cast_nullable_to_non_nullable
+              as List<PhotoRecord>,
+      pointsEarned: null == pointsEarned
+          ? _value.pointsEarned
+          : pointsEarned // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$DailyProgressImpl extends _DailyProgress {
-  const _$DailyProgressImpl({
-    required this.date,
-    this.morningCheckIn,
-    this.nightCheckIn,
-    required this.currentStreak,
-    this.cycleDay = 0,
-    final List<PhotoRecord> photos = const [],
-    this.pointsEarned = 0,
-  }) : _photos = photos,
-       super._();
+  const _$DailyProgressImpl(
+      {required this.date,
+      this.morningCheckIn,
+      this.nightCheckIn,
+      required this.currentStreak,
+      this.cycleDay = 0,
+      final List<PhotoRecord> photos = const [],
+      this.pointsEarned = 0})
+      : _photos = photos,
+        super._();
 
   /// The date this progress represents
   @override
@@ -305,15 +294,14 @@ class _$DailyProgressImpl extends _DailyProgress {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    date,
-    morningCheckIn,
-    nightCheckIn,
-    currentStreak,
-    cycleDay,
-    const DeepCollectionEquality().hash(_photos),
-    pointsEarned,
-  );
+      runtimeType,
+      date,
+      morningCheckIn,
+      nightCheckIn,
+      currentStreak,
+      cycleDay,
+      const DeepCollectionEquality().hash(_photos),
+      pointsEarned);
 
   @JsonKey(ignore: true)
   @override
@@ -323,37 +311,43 @@ class _$DailyProgressImpl extends _DailyProgress {
 }
 
 abstract class _DailyProgress extends DailyProgress {
-  const factory _DailyProgress({
-    required final DateTime date,
-    final CheckIn? morningCheckIn,
-    final CheckIn? nightCheckIn,
-    required final int currentStreak,
-    final int cycleDay,
-    final List<PhotoRecord> photos,
-    final int pointsEarned,
-  }) = _$DailyProgressImpl;
+  const factory _DailyProgress(
+      {required final DateTime date,
+      final CheckIn? morningCheckIn,
+      final CheckIn? nightCheckIn,
+      required final int currentStreak,
+      final int cycleDay,
+      final List<PhotoRecord> photos,
+      final int pointsEarned}) = _$DailyProgressImpl;
   const _DailyProgress._() : super._();
 
   @override
+
   /// The date this progress represents
   DateTime get date;
   @override
+
   /// Morning check-in if completed
   CheckIn? get morningCheckIn;
   @override
+
   /// Night check-in if completed
   CheckIn? get nightCheckIn;
   @override
+
   /// Current streak count (consecutive days)
   int get currentStreak;
   @override
+
   /// Day number in the 30-day cycle (1-30)
   /// 0 if no active cycle
   int get cycleDay;
   @override
+
   /// Photos taken on this day
   List<PhotoRecord> get photos;
   @override
+
   /// Total points earned today
   int get pointsEarned;
   @override

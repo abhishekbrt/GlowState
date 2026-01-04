@@ -15,9 +15,8 @@ String _$photoBoxHash() => r'ffab457470086d288d63c9b8f7d7418e4d5245a8';
 final photoBoxProvider = Provider<Box<PhotoModel>>.internal(
   photoBox,
   name: r'photoBoxProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$photoBoxHash,
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$photoBoxHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

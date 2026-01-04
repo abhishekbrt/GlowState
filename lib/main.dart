@@ -4,6 +4,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:glowstate/app.dart';
 import 'package:glowstate/features/photo_gallery/data/models/photo_model.dart';
 import 'package:glowstate/features/photo_gallery/data/providers/photo_repository_provider.dart';
+import 'package:glowstate/features/notifications/data/providers/notification_repository_provider.dart';
+import 'package:glowstate/features/notifications/data/services/local_notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,9 +19,16 @@ void main() async {
   // Open boxes
   final photoBox = await Hive.openBox<PhotoModel>('photos');
 
+  // Initialize Notifications
+  final notificationService = LocalNotificationService();
+  await notificationService.initialize();
+
   runApp(
     ProviderScope(
-      overrides: [photoBoxProvider.overrideWithValue(photoBox)],
+      overrides: [
+        photoBoxProvider.overrideWithValue(photoBox),
+        notificationServiceProvider.overrideWithValue(notificationService),
+      ],
       child: const GlowStateApp(),
     ),
   );

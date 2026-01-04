@@ -1,3 +1,5 @@
+import 'package:camera/camera.dart';
+import 'package:glowstate/features/photo_gallery/domain/repositories/photo_repository.dart';
 import 'package:glowstate/shared/domain/enums/check_in_type.dart';
 
 import '../../domain/repositories/camera_repository.dart';
@@ -9,58 +11,57 @@ import '../datasources/camera_local_source.dart';
 /// to PhotoRepository via use cases.
 class CameraRepositoryImpl implements CameraRepository {
   final CameraLocalSource localSource;
+  final PhotoRepository photoRepository;
 
-  CameraRepositoryImpl({required this.localSource});
+  CameraRepositoryImpl({
+    required this.localSource,
+    required this.photoRepository,
+  });
 
   @override
   Future<void> initialize() async {
-    // TODO: Implement - initialize camera hardware
-    throw UnimplementedError('CameraRepositoryImpl.initialize');
+    await localSource.initializeCamera();
   }
 
   @override
   Future<void> dispose() async {
-    // TODO: Implement - release camera resources
-    throw UnimplementedError('CameraRepositoryImpl.dispose');
+    await localSource.disposeCamera();
   }
 
   @override
   Future<String> capturePhoto({required CheckInType checkInType}) async {
-    // TODO: Implement - capture photo and return file path
-    // The file path will be used by CapturePhotoUseCase to create PhotoRecord
-    throw UnimplementedError('CameraRepositoryImpl.capturePhoto');
+    // Capture the image and return the temp file path
+    // The UseCase will handle creating PhotoRecord and saving to Gallery
+    return await localSource.captureImage();
   }
 
   @override
   Future<String?> getLastPhotoPath() async {
-    // TODO: Implement - for ghost overlay
-    throw UnimplementedError('CameraRepositoryImpl.getLastPhotoPath');
+    final lastPhoto = await photoRepository.getLatestPhoto();
+    return lastPhoto?.filePath;
   }
 
   @override
   Future<void> switchCamera() async {
-    // TODO: Implement - toggle front/back
-    throw UnimplementedError('CameraRepositoryImpl.switchCamera');
+    await localSource.switchCamera();
   }
 
   @override
   Future<void> setFlash({required bool enabled}) async {
-    // TODO: Implement - control flash
-    throw UnimplementedError('CameraRepositoryImpl.setFlash');
+    await localSource.setFlash(enabled: enabled);
   }
 
   @override
   Future<void> setZoom(double level) async {
-    // TODO: Implement - set zoom level
-    throw UnimplementedError('CameraRepositoryImpl.setZoom');
+    await localSource.setZoom(level);
   }
 
   @override
   bool get isInitialized => localSource.isInitialized;
 
   @override
-  bool get isFrontCamera {
-    // TODO: Implement - return current camera
-    throw UnimplementedError('CameraRepositoryImpl.isFrontCamera');
-  }
+  bool get isFrontCamera => localSource.isFrontCamera;
+
+  /// Get the camera controller for preview widget
+  CameraController? get controller => localSource.controller;
 }
