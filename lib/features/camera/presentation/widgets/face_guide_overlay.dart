@@ -1,8 +1,8 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
+import 'package:glowstate/core/constants/app_constants.dart';
 
 /// A widget that displays a dashed oval guide for face positioning
+
 ///
 /// This helps users align their face consistently for daily photos,
 /// enabling better timelapse generation.
@@ -45,96 +45,105 @@ class _FaceGuidePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round;
+    // 1. Draw Vignette (Darken outside the oval)
+    // Create a path for the screen
+    final screenPath = Path()
+      ..addRect(Rect.fromLTWH(0, 0, size.width, size.height));
 
-    // Calculate oval dimensions
+    // Calculate oval dimensions using constants
     // Position slightly above center for natural face framing
     final centerX = size.width / 2;
-    final centerY = size.height / 2 - size.height * 0.05;
+    final centerY =
+        size.height / 2 -
+        size.height * AppConstants.faceGuideVerticalOffsetRatio;
 
     // Oval size relative to screen width
-    final ovalWidth = size.width * 0.55;
-    final ovalHeight =
-        ovalWidth * 1.3; // Slightly taller than wide for face shape
+    final ovalWidth = size.width * AppConstants.faceGuideOvalWidthRatio;
+    final ovalHeight = ovalWidth * AppConstants.faceGuideOvalAspectRatio;
 
-    final rect = Rect.fromCenter(
+    final ovalRect = Rect.fromCenter(
       center: Offset(centerX, centerY),
       width: ovalWidth,
       height: ovalHeight,
     );
 
-    // Draw dashed oval
-    _drawDashedOval(canvas, rect, paint);
+    final ovalPath = Path()..addOval(ovalRect);
 
-    // Draw small alignment marks at key points
-    _drawAlignmentMarks(canvas, rect, paint);
-  }
+    // Create the "hole" by subtracting oval from screen
+    final vignettePath = Path.combine(
+      PathOperation.difference,
+      screenPath,
+      ovalPath,
+    );
 
-  void _drawDashedOval(Canvas canvas, Rect rect, Paint paint) {
-    const dashLength = 12.0;
-    const gapLength = 8.0;
-    final path = Path()..addOval(rect);
+    final vignettePaint = Paint()
+      ..color = Colors.black
+          .withValues(
+            alpha: AppConstants.faceGuideVignetteOpacity,
+          ) // Subtle darkening
+      ..style = PaintingStyle.fill;
 
-    final pathMetrics = path.computeMetrics();
-    for (final metric in pathMetrics) {
-      double distance = 0;
-      bool draw = true;
+    canvas.drawPath(vignettePath, vignettePaint);
 
-      while (distance < metric.length) {
-        final length = draw ? dashLength : gapLength;
-        final end = math.min(distance + length, metric.length);
+    // 2. Draw Soft Glow Guide
+    final glowPaint = Paint()
+      ..color = color.withValues(alpha: AppConstants.faceGuideGlowOpacity)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth * AppConstants.faceGuideGlowStrokeMultiplier
+      ..maskFilter = const MaskFilter.blur(
+        BlurStyle.normal,
+        AppConstants.faceGuideGlowBlurRadius,
+      );
 
-        if (draw) {
-          final extractPath = metric.extractPath(distance, end);
-          canvas.drawPath(extractPath, paint);
-        }
+    canvas.drawOval(ovalRect, glowPaint);
 
-        distance = end;
-        draw = !draw;
-      }
-    }
-  }
-
-  void _drawAlignmentMarks(Canvas canvas, Rect rect, Paint paint) {
-    final markerPaint = Paint()
+    // 3. Draw Sharp Guide Line
+    final borderPaint = Paint()
       ..color = color
       ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth * 0.8
+      ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    const markLength = 8.0;
+    // Use a solid line instead of dashed for a cleaner, more elegant look
+    canvas.drawOval(ovalRect, borderPaint);
 
-    // Top center mark
-    canvas.drawLine(
-      Offset(rect.center.dx, rect.top - markLength),
-      Offset(rect.center.dx, rect.top - 2),
-      markerPaint,
-    );
+    // 4. Draw Botanical/Organic Accents instead of crosshairs
+    _drawOrganicAccents(canvas, ovalRect, borderPaint);
+  }
 
-    // Bottom center mark
-    canvas.drawLine(
-      Offset(rect.center.dx, rect.bottom + 2),
-      Offset(rect.center.dx, rect.bottom + markLength),
-      markerPaint,
-    );
+  void _drawOrganicAccents(Canvas canvas, Rect rect, Paint paint) {
+    final accentPaint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth * AppConstants.faceGuideAccentStrokeMultiplier
+      ..strokeCap = StrokeCap.round;
 
-    // Left center mark
-    canvas.drawLine(
-      Offset(rect.left - markLength, rect.center.dy),
-      Offset(rect.left - 2, rect.center.dy),
-      markerPaint,
-    );
+    // Draw small "leaf-like" curves at the corners of the bounding box
+    // Top-Left
+    final cornerSize = rect.width * AppConstants.faceGuideAccentSizeRatio;
+    final curveOffset = AppConstants.faceGuideAccentCurveOffset;
 
-    // Right center mark
-    canvas.drawLine(
-      Offset(rect.right + 2, rect.center.dy),
-      Offset(rect.right + markLength, rect.center.dy),
-      markerPaint,
+    // Top Arc
+    final topPath = Path();
+    topPath.moveTo(rect.topCenter.dx - cornerSize, rect.top);
+    topPath.quadraticBezierTo(
+      rect.topCenter.dx,
+      rect.top + curveOffset,
+      rect.topCenter.dx + cornerSize,
+      rect.top,
     );
+    canvas.drawPath(topPath, accentPaint);
+
+    // Bottom Arc
+    final bottomPath = Path();
+    bottomPath.moveTo(rect.bottomCenter.dx - cornerSize, rect.bottom);
+    bottomPath.quadraticBezierTo(
+      rect.bottomCenter.dx,
+      rect.bottom - curveOffset,
+      rect.bottomCenter.dx + cornerSize,
+      rect.bottom,
+    );
+    canvas.drawPath(bottomPath, accentPaint);
   }
 
   @override

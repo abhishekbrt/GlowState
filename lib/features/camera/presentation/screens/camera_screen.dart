@@ -8,12 +8,14 @@ import '../widgets/camera_bottom_nav.dart';
 import '../widgets/camera_controls.dart';
 import '../widgets/camera_preview.dart';
 import '../widgets/face_guide_overlay.dart';
+import '../widgets/ghost_overlay.dart';
 
 /// Main camera screen for capturing daily photos
 ///
 /// Features:
 /// - Full-screen camera preview
 /// - Face guide overlay for consistent positioning
+/// - Ghost Mode: Overlay of last photo for perfect alignment
 /// - Top controls for flash and camera switching
 /// - Bottom navigation with large capture button
 class CameraScreen extends ConsumerStatefulWidget {
@@ -56,6 +58,7 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
   @override
   Widget build(BuildContext context) {
     final cameraState = ref.watch(cameraProvider);
+    final lastPhotoPath = ref.watch(ghostOverlayPathProvider).valueOrNull;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -64,6 +67,9 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
         children: [
           // Camera preview (full screen)
           _buildCameraPreview(cameraState),
+
+          // Ghost Mode Overlay
+          if (cameraState.isInitialized) GhostOverlay(imagePath: lastPhotoPath),
 
           // Face guide overlay
           const FaceGuideOverlay(),

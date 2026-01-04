@@ -31,55 +31,66 @@ class CameraControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Close button
-            _ControlButton(
-              icon: Icons.close,
-              onPressed: onClosePressed,
-              tooltip: 'Close',
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.black.withValues(alpha: 0.4), Colors.transparent],
+        ),
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Close button
+              _GlassControlButton(
+                icon: Icons.close_rounded,
+                onPressed: onClosePressed,
+                tooltip: 'Close',
+              ),
 
-            // Right side controls
-            Row(
-              children: [
-                // Flash toggle (only show for back camera)
-                if (!isFrontCamera)
-                  _ControlButton(
-                    icon: isFlashOn ? Icons.flash_on : Icons.flash_off,
-                    onPressed: onFlashPressed,
-                    tooltip: isFlashOn ? 'Flash On' : 'Flash Off',
-                    isActive: isFlashOn,
+              // Right side controls
+              Row(
+                children: [
+                  // Flash toggle (only show for back camera)
+                  if (!isFrontCamera) ...[
+                    _GlassControlButton(
+                      icon: isFlashOn
+                          ? Icons.flash_on_rounded
+                          : Icons.flash_off_rounded,
+                      onPressed: onFlashPressed,
+                      tooltip: isFlashOn ? 'Flash On' : 'Flash Off',
+                      isActive: isFlashOn,
+                    ),
+                    const SizedBox(width: 16),
+                  ],
+
+                  // Switch camera
+                  _GlassControlButton(
+                    icon: Icons.flip_camera_ios_rounded,
+                    onPressed: onSwitchCameraPressed,
+                    tooltip: 'Switch Camera',
                   ),
-
-                const SizedBox(width: 8),
-
-                // Switch camera
-                _ControlButton(
-                  icon: Icons.flip_camera_ios,
-                  onPressed: onSwitchCameraPressed,
-                  tooltip: 'Switch Camera',
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class _ControlButton extends StatelessWidget {
+class _GlassControlButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onPressed;
   final String tooltip;
   final bool isActive;
 
-  const _ControlButton({
+  const _GlassControlButton({
     required this.icon,
     required this.onPressed,
     required this.tooltip,
@@ -91,16 +102,27 @@ class _ControlButton extends StatelessWidget {
     return Tooltip(
       message: tooltip,
       child: Material(
-        color: isActive
-            ? Colors.white.withValues(alpha: 0.3)
-            : Colors.black.withValues(alpha: 0.3),
-        shape: const CircleBorder(),
+        color: Colors.transparent,
         child: InkWell(
           onTap: onPressed,
           customBorder: const CircleBorder(),
-          child: Padding(
+          child: Container(
             padding: const EdgeInsets.all(12),
-            child: Icon(icon, color: Colors.white, size: 24),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: isActive
+                  ? Colors.white.withValues(alpha: 0.3)
+                  : Colors.black.withValues(alpha: 0.2),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.2),
+                width: 1,
+              ),
+            ),
+            child: Icon(
+              icon,
+              color: isActive ? Colors.amber[200] : Colors.white,
+              size: 24,
+            ),
           ),
         ),
       ),
