@@ -12,7 +12,8 @@ part of 'captured_photo.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$CapturedPhoto {
@@ -31,16 +32,18 @@ mixin _$CapturedPhoto {
 /// @nodoc
 abstract class $CapturedPhotoCopyWith<$Res> {
   factory $CapturedPhotoCopyWith(
-          CapturedPhoto value, $Res Function(CapturedPhoto) then) =
-      _$CapturedPhotoCopyWithImpl<$Res, CapturedPhoto>;
+    CapturedPhoto value,
+    $Res Function(CapturedPhoto) then,
+  ) = _$CapturedPhotoCopyWithImpl<$Res, CapturedPhoto>;
   @useResult
-  $Res call(
-      {String id,
-      String filePath,
-      DateTime capturedAt,
-      bool isMorning,
-      bool isPrivate,
-      String? thumbnailPath});
+  $Res call({
+    String id,
+    String filePath,
+    DateTime capturedAt,
+    bool isMorning,
+    bool isPrivate,
+    String? thumbnailPath,
+  });
 }
 
 /// @nodoc
@@ -63,32 +66,35 @@ class _$CapturedPhotoCopyWithImpl<$Res, $Val extends CapturedPhoto>
     Object? isPrivate = null,
     Object? thumbnailPath = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      filePath: null == filePath
-          ? _value.filePath
-          : filePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      capturedAt: null == capturedAt
-          ? _value.capturedAt
-          : capturedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      isMorning: null == isMorning
-          ? _value.isMorning
-          : isMorning // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPrivate: null == isPrivate
-          ? _value.isPrivate
-          : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      thumbnailPath: freezed == thumbnailPath
-          ? _value.thumbnailPath
-          : thumbnailPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            filePath: null == filePath
+                ? _value.filePath
+                : filePath // ignore: cast_nullable_to_non_nullable
+                      as String,
+            capturedAt: null == capturedAt
+                ? _value.capturedAt
+                : capturedAt // ignore: cast_nullable_to_non_nullable
+                      as DateTime,
+            isMorning: null == isMorning
+                ? _value.isMorning
+                : isMorning // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isPrivate: null == isPrivate
+                ? _value.isPrivate
+                : isPrivate // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            thumbnailPath: freezed == thumbnailPath
+                ? _value.thumbnailPath
+                : thumbnailPath // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -96,17 +102,19 @@ class _$CapturedPhotoCopyWithImpl<$Res, $Val extends CapturedPhoto>
 abstract class _$$CapturedPhotoImplCopyWith<$Res>
     implements $CapturedPhotoCopyWith<$Res> {
   factory _$$CapturedPhotoImplCopyWith(
-          _$CapturedPhotoImpl value, $Res Function(_$CapturedPhotoImpl) then) =
-      __$$CapturedPhotoImplCopyWithImpl<$Res>;
+    _$CapturedPhotoImpl value,
+    $Res Function(_$CapturedPhotoImpl) then,
+  ) = __$$CapturedPhotoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String filePath,
-      DateTime capturedAt,
-      bool isMorning,
-      bool isPrivate,
-      String? thumbnailPath});
+  $Res call({
+    String id,
+    String filePath,
+    DateTime capturedAt,
+    bool isMorning,
+    bool isPrivate,
+    String? thumbnailPath,
+  });
 }
 
 /// @nodoc
@@ -114,8 +122,9 @@ class __$$CapturedPhotoImplCopyWithImpl<$Res>
     extends _$CapturedPhotoCopyWithImpl<$Res, _$CapturedPhotoImpl>
     implements _$$CapturedPhotoImplCopyWith<$Res> {
   __$$CapturedPhotoImplCopyWithImpl(
-      _$CapturedPhotoImpl _value, $Res Function(_$CapturedPhotoImpl) _then)
-      : super(_value, _then);
+    _$CapturedPhotoImpl _value,
+    $Res Function(_$CapturedPhotoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -127,45 +136,48 @@ class __$$CapturedPhotoImplCopyWithImpl<$Res>
     Object? isPrivate = null,
     Object? thumbnailPath = freezed,
   }) {
-    return _then(_$CapturedPhotoImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      filePath: null == filePath
-          ? _value.filePath
-          : filePath // ignore: cast_nullable_to_non_nullable
-              as String,
-      capturedAt: null == capturedAt
-          ? _value.capturedAt
-          : capturedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      isMorning: null == isMorning
-          ? _value.isMorning
-          : isMorning // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isPrivate: null == isPrivate
-          ? _value.isPrivate
-          : isPrivate // ignore: cast_nullable_to_non_nullable
-              as bool,
-      thumbnailPath: freezed == thumbnailPath
-          ? _value.thumbnailPath
-          : thumbnailPath // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$CapturedPhotoImpl(
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        filePath: null == filePath
+            ? _value.filePath
+            : filePath // ignore: cast_nullable_to_non_nullable
+                  as String,
+        capturedAt: null == capturedAt
+            ? _value.capturedAt
+            : capturedAt // ignore: cast_nullable_to_non_nullable
+                  as DateTime,
+        isMorning: null == isMorning
+            ? _value.isMorning
+            : isMorning // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isPrivate: null == isPrivate
+            ? _value.isPrivate
+            : isPrivate // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        thumbnailPath: freezed == thumbnailPath
+            ? _value.thumbnailPath
+            : thumbnailPath // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$CapturedPhotoImpl implements _CapturedPhoto {
-  const _$CapturedPhotoImpl(
-      {required this.id,
-      required this.filePath,
-      required this.capturedAt,
-      required this.isMorning,
-      this.isPrivate = false,
-      this.thumbnailPath});
+  const _$CapturedPhotoImpl({
+    required this.id,
+    required this.filePath,
+    required this.capturedAt,
+    required this.isMorning,
+    this.isPrivate = false,
+    this.thumbnailPath,
+  });
 
   @override
   final String id;
@@ -205,8 +217,15 @@ class _$CapturedPhotoImpl implements _CapturedPhoto {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, filePath, capturedAt,
-      isMorning, isPrivate, thumbnailPath);
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    filePath,
+    capturedAt,
+    isMorning,
+    isPrivate,
+    thumbnailPath,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -216,13 +235,14 @@ class _$CapturedPhotoImpl implements _CapturedPhoto {
 }
 
 abstract class _CapturedPhoto implements CapturedPhoto {
-  const factory _CapturedPhoto(
-      {required final String id,
-      required final String filePath,
-      required final DateTime capturedAt,
-      required final bool isMorning,
-      final bool isPrivate,
-      final String? thumbnailPath}) = _$CapturedPhotoImpl;
+  const factory _CapturedPhoto({
+    required final String id,
+    required final String filePath,
+    required final DateTime capturedAt,
+    required final bool isMorning,
+    final bool isPrivate,
+    final String? thumbnailPath,
+  }) = _$CapturedPhotoImpl;
 
   @override
   String get id;

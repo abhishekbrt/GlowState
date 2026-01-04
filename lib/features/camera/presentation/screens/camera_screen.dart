@@ -103,6 +103,7 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
               onCapture: cameraState.isInitialized && !cameraState.isCapturing
                   ? () => _capturePhoto()
                   : null,
+              onGallery: () => context.push('/gallery'),
               isCapturing: cameraState.isCapturing,
             ),
           ),

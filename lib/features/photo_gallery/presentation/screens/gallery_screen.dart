@@ -108,7 +108,7 @@ class _EmptyGalleryView extends StatelessWidget {
           Icon(
             Icons.photo_library_outlined,
             size: 80,
-            color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
           ),
           const SizedBox(height: 16),
           Text('No photos yet', style: Theme.of(context).textTheme.titleLarge),

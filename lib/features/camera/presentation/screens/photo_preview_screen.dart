@@ -3,20 +3,33 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:glowstate/features/photo_gallery/data/providers/photo_repository_provider.dart';
+import 'package:glowstate/features/photo_gallery/presentation/providers/photo_gallery_provider.dart';
+import 'package:glowstate/shared/domain/entities/photo_record.dart';
+import 'package:glowstate/shared/domain/enums/check_in_type.dart';
+import 'package:uuid/uuid.dart';
 
 /// Screen to preview a captured photo before using or retaking
 ///
 /// Displays the captured image full-screen with options to:
 /// - Retake: Delete the temp file and go back to camera
-/// - Use Photo: Accept the photo and return to home (no save for now)
-class PhotoPreviewScreen extends ConsumerWidget {
+/// - Use Photo: Save to gallery and navigate to gallery screen
+class PhotoPreviewScreen extends ConsumerStatefulWidget {
   /// Path to the captured image file
   final String imagePath;
 
   const PhotoPreviewScreen({super.key, required this.imagePath});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PhotoPreviewScreen> createState() => _PhotoPreviewScreenState();
+}
+
+class _PhotoPreviewScreenState extends ConsumerState<PhotoPreviewScreen> {
+  bool _isSaving = false;
+  static const _uuid = Uuid();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
@@ -41,7 +54,7 @@ class PhotoPreviewScreen extends ConsumerWidget {
   }
 
   Widget _buildImagePreview() {
-    final file = File(imagePath);
+    final file = File(widget.imagePath);
 
     if (!file.existsSync()) {
       return const Center(
@@ -141,7 +154,7 @@ class PhotoPreviewScreen extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.only(right: 8),
                 child: OutlinedButton.icon(
-                  onPressed: () => _handleRetake(context),
+                  onPressed: _isSaving ? null : () => _handleRetake(context),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Colors.white,
                     side: const BorderSide(color: Colors.white, width: 2),
@@ -164,7 +177,7 @@ class PhotoPreviewScreen extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 8),
                 child: ElevatedButton.icon(
-                  onPressed: () => _handleUsePhoto(context),
+                  onPressed: _isSaving ? null : () => _handleUsePhoto(context),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.black,
@@ -173,10 +186,19 @@ class PhotoPreviewScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  icon: const Icon(Icons.check),
-                  label: const Text(
-                    'Use Photo',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  icon: _isSaving
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.check),
+                  label: Text(
+                    _isSaving ? 'Saving...' : 'Use Photo',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -195,20 +217,62 @@ class PhotoPreviewScreen extends ConsumerWidget {
     context.pop();
   }
 
-  void _handleUsePhoto(BuildContext context) {
-    // For now, just go back to home
-    // TODO: Integrate with CapturePhotoUseCase to save to gallery
-    // and create PhotoRecord when Gallery feature is implemented
+  Future<void> _handleUsePhoto(BuildContext context) async {
+    if (_isSaving) return;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Photo captured! (Gallery integration coming soon)'),
-        duration: Duration(seconds: 2),
-      ),
-    );
+    setState(() {
+      _isSaving = true;
+    });
 
-    // Navigate back to home
-    context.go('/');
+    try {
+      // Determine check-in type based on time of day
+      final hour = DateTime.now().hour;
+      final checkInType = (hour >= 5 && hour < 12)
+          ? CheckInType.morning
+          : CheckInType.night;
+
+      // Create PhotoRecord with metadata
+      final photo = PhotoRecord(
+        id: _uuid.v4(),
+        filePath: widget.imagePath,
+        capturedAt: DateTime.now(),
+        checkInType: checkInType,
+      );
+
+      // Save to gallery repository
+      final repository = ref.read(photoRepositoryProvider);
+      await repository.savePhoto(photo);
+
+      // Invalidate providers to refresh gallery and ghost overlay
+      ref.invalidate(photoGalleryProvider);
+      ref.invalidate(latestPhotoProvider);
+
+      if (!context.mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Photo saved to gallery!'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+
+      // Navigate to gallery to see the saved photo
+      context.go('/gallery');
+    } catch (e) {
+      if (!context.mounted) return;
+
+      setState(() {
+        _isSaving = false;
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to save photo: $e'),
+          backgroundColor: Colors.red,
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
   }
 
   void _handleClose(BuildContext context) {
@@ -219,7 +283,7 @@ class PhotoPreviewScreen extends ConsumerWidget {
 
   void _deleteTemporaryFile() {
     try {
-      final file = File(imagePath);
+      final file = File(widget.imagePath);
       if (file.existsSync()) {
         file.deleteSync();
       }

@@ -47,21 +47,15 @@ class PhotosForDateFamily extends Family<AsyncValue<List<PhotoRecord>>> {
   /// Provider for photos on a specific date
   ///
   /// Copied from [photosForDate].
-  PhotosForDateProvider call(
-    DateTime date,
-  ) {
-    return PhotosForDateProvider(
-      date,
-    );
+  PhotosForDateProvider call(DateTime date) {
+    return PhotosForDateProvider(date);
   }
 
   @override
   PhotosForDateProvider getProviderOverride(
     covariant PhotosForDateProvider provider,
   ) {
-    return call(
-      provider.date,
-    );
+    return call(provider.date);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -87,24 +81,19 @@ class PhotosForDateProvider
   /// Provider for photos on a specific date
   ///
   /// Copied from [photosForDate].
-  PhotosForDateProvider(
-    DateTime date,
-  ) : this._internal(
-          (ref) => photosForDate(
-            ref as PhotosForDateRef,
-            date,
-          ),
-          from: photosForDateProvider,
-          name: r'photosForDateProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$photosForDateHash,
-          dependencies: PhotosForDateFamily._dependencies,
-          allTransitiveDependencies:
-              PhotosForDateFamily._allTransitiveDependencies,
-          date: date,
-        );
+  PhotosForDateProvider(DateTime date)
+    : this._internal(
+        (ref) => photosForDate(ref as PhotosForDateRef, date),
+        from: photosForDateProvider,
+        name: r'photosForDateProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$photosForDateHash,
+        dependencies: PhotosForDateFamily._dependencies,
+        allTransitiveDependencies:
+            PhotosForDateFamily._allTransitiveDependencies,
+        date: date,
+      );
 
   PhotosForDateProvider._internal(
     super._createNotifier, {
@@ -178,8 +167,9 @@ String _$photoCountHash() => r'4610a5a0b7ea87ab16a8378812bac4a0b23a8733';
 final photoCountProvider = AutoDisposeFutureProvider<int>.internal(
   photoCount,
   name: r'photoCountProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$photoCountHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$photoCountHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -194,8 +184,9 @@ String _$latestPhotoHash() => r'c9d41f64ee4abe6fa1976754c689873af7008d6b';
 final latestPhotoProvider = AutoDisposeFutureProvider<PhotoRecord?>.internal(
   latestPhoto,
   name: r'latestPhotoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$latestPhotoHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$latestPhotoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
@@ -209,13 +200,14 @@ String _$photoGalleryHash() => r'32b8bc9f4e8baa80e0c303ead29599aadcab9292';
 @ProviderFor(PhotoGallery)
 final photoGalleryProvider =
     AutoDisposeAsyncNotifierProvider<PhotoGallery, List<PhotoRecord>>.internal(
-  PhotoGallery.new,
-  name: r'photoGalleryProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$photoGalleryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      PhotoGallery.new,
+      name: r'photoGalleryProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$photoGalleryHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$PhotoGallery = AutoDisposeAsyncNotifier<List<PhotoRecord>>;
 // ignore_for_file: type=lint

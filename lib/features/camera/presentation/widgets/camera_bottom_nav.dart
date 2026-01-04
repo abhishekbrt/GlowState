@@ -45,8 +45,8 @@ class CameraBottomNav extends StatelessWidget {
               _GlassSideButton(
                 icon: Icons.photo_library_outlined,
                 onPressed: onGallery,
-                enabled: false, // Keeping disabled as per original
-                tooltip: 'Gallery (Coming Soon)',
+                enabled: true, // Keeping disabled as per original
+                tooltip: 'Gallery',
               ),
 
               // Capture button (large, center)
