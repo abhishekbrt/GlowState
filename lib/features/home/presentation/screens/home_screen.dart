@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:glowstate/core/theme/app_colors.dart';
-import 'package:glowstate/features/auth/presentation/providers/auth_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authProvider);
-    final user = authState.valueOrNull;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('GlowState'),
@@ -19,10 +15,6 @@ class HomeScreen extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.photo_library),
             onPressed: () => context.pushNamed('gallery'),
-          ),
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () => ref.read(authProvider.notifier).logout(),
           ),
         ],
       ),
@@ -32,7 +24,7 @@ class HomeScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildGreeting(context, user?.displayName),
+              _buildGreeting(context),
               const SizedBox(height: 24),
               _buildTodayStatusCard(context),
               const SizedBox(height: 16),
@@ -46,14 +38,14 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildGreeting(BuildContext context, String? displayName) {
+  Widget _buildGreeting(BuildContext context) {
     final greeting = _getGreeting();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('$greeting,', style: Theme.of(context).textTheme.headlineMedium),
         Text(
-          displayName ?? 'Beautiful',
+          'Beautiful',
           style: Theme.of(
             context,
           ).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w700),
