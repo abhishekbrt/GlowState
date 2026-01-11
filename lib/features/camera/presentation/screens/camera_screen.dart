@@ -29,9 +29,13 @@ class _CameraScreenState extends ConsumerState<CameraScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    // Initialize camera after first frame
+    // Initialize camera after first frame and screen transition
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(cameraProvider.notifier).initialize();
+      Future.delayed(const Duration(milliseconds: 300), () {
+        if (mounted) {
+          ref.read(cameraProvider.notifier).initialize();
+        }
+      });
     });
   }
 

@@ -57,7 +57,7 @@ class CameraLocalSourceImpl implements CameraLocalSource {
 
     _controller = CameraController(
       camera,
-      ResolutionPreset.high,
+      ResolutionPreset.medium,
       enableAudio: false,
       imageFormatGroup: ImageFormatGroup.jpeg,
     );
