@@ -2,9 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:glowstate/features/check_in/data/providers/check_in_repository_provider.dart';
 import 'package:glowstate/features/streak/data/providers/streak_repository_provider.dart';
-import 'package:glowstate/shared/domain/services/event_bus_provider.dart';
+import 'package:glowstate/shared/data/providers/event_bus_provider.dart';
 
-import '../usecases/complete_check_in_usecase.dart';
+import 'package:glowstate/features/check_in/domain/usecases/complete_check_in_usecase.dart';
 
 /// Provider for [CompleteCheckInUseCase]
 ///

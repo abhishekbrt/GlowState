@@ -2,9 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:glowstate/features/photo_gallery/data/providers/photo_repository_provider.dart';
 import 'package:glowstate/features/timelapse/data/providers/timelapse_repository_provider.dart';
-import 'package:glowstate/shared/domain/services/event_bus_provider.dart';
+import 'package:glowstate/shared/data/providers/event_bus_provider.dart';
 
-import '../usecases/generate_timelapse_usecase.dart';
+import 'package:glowstate/features/timelapse/domain/usecases/generate_timelapse_usecase.dart';
 
 /// Provider for [GenerateTimelapseUseCase]
 ///
